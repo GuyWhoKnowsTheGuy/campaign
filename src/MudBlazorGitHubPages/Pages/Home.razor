@@ -58,7 +58,7 @@
             
             //var  foo = uri.PathAndQuery.Remove(uri.PathAndQuery.IndexOf('?'));
             
-            this.State = this.State with { RootPath = uri.PathAndQuery };
+            this.State = this.State with { RootPath = uri.PathAndQuery.Replace("/", string.Empty) };
         }
         
         if (firstRender)
