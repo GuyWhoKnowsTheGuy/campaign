@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject NavigationManager NavigationManager
 
 <PageTitle>Home</PageTitle>
 
@@ -8,7 +9,7 @@
     <MudCardContent>
         <MudStack>
             <MudText>Tucker Carlson</MudText>
-            <MudLink Href="https://x.com/TuckerCarlson" Target="_blank"><MudImage Src="/images/x-logo-black.png" Height="25" Width="25"/></MudLink> 
+            <MudLink Href="https://x.com/TuckerCarlson" Target="_blank"><MudImage Src="@($"{NavigationManager.BaseUri}images/x-logo-black.png")" Height="25" Width="25"/></MudLink> 
         </MudStack> 
     </MudCardContent>
 </MudCard>
