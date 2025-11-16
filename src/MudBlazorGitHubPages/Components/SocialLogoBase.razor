@@ -1,0 +1,9 @@
+@code {
+    [Parameter]
+    public string? RootPath { get; set; }
+    
+    [Parameter]
+    public string? ImageFileName { get; set; }
+    
+    protected static string ImagePath(string? rootPath) => $"{(string.IsNullOrEmpty(rootPath) || rootPath == "/" ? string.Empty : $"/{rootPath}")}/images/";
+}

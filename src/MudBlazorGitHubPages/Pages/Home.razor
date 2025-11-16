@@ -1,14 +1,65 @@
 ﻿@page "/"
+@using MudBlazorGitHubPages.Components
+@inject NavigationManager NavigationManager
 
 <PageTitle>Home</PageTitle>
 
 
-<MudText Typo="Typo.h3" GutterBottom="true">Hello, world!</MudText>
-<MudText Class="mb-8">Welcome to your new app, powered by MudBlazor and the .NET 10 Template!</MudText>
+<MudText Typo="Typo.h3" GutterBottom="true">Swarm!</MudText>
+<MudStack Spacing="3">
+    <MudCard Outlined="true">
+        <MudCardContent>
+            <MudStack>
+                <MudText>Tucker Carlson</MudText>
+                <MudStack Spacing="3" Row="true">
+                    <MudLink Href="https://x.com/TuckerCarlson" Target="_blank"><XLogo RootPath="@State?.RootPath"/></MudLink>
+                    <MudLink Href="https://www.instagram.com/tuckercarlson/" Target="_blank"><InstagramLogo RootPath="@State?.RootPath"/></MudLink>
+                </MudStack>
+            </MudStack> 
+        </MudCardContent>
+    </MudCard>
+    <MudCard Outlined="true">
+        <MudCardContent>
+            <MudStack>
+                <MudText>Tom Bilyeu</MudText>
+                <MudStack Spacing="3" Row="true">
+                    <MudLink Href="https://x.com/tombilyeu" Target="_blank"><XLogo RootPath="@State?.RootPath"/></MudLink> 
+                    <MudLink Href="https://www.instagram.com/tombilyeu/" Target="_blank"><InstagramLogo RootPath="@State?.RootPath"/></MudLink> 
+                </MudStack>
+            </MudStack> 
+        </MudCardContent>
+    </MudCard>
+</MudStack>
+@code {
+    [PersistentState]
+    public ViewState? State { get; set; }
 
-<MudAlert Severity="Severity.Normal">
-    You can find documentation and examples on our website here:
-    <MudLink Href="https://mudblazor.com" Target="_blank" Typo="Typo.body2" Color="Color.Primary">
-        <b>www.mudblazor.com</b>
-    </MudLink>
-</MudAlert>
+    protected override void OnInitialized()
+    {
+        if (this.State is null)
+        {
+            this.State = new("campaign");
+        }
+        
+        base.OnInitialized();
+    }
+    
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (this.State is not null)
+        {
+            var uri = new Uri(NavigationManager.BaseUri);
+            
+            this.State = this.State with { RootPath = uri.PathAndQuery.Replace("/", string.Empty) };
+        }
+        
+        if (firstRender)
+        {
+            _ = this.InvokeAsync(() => this.StateHasChanged());
+        }
+
+        base.OnAfterRender(firstRender);
+    }
+
+    public record ViewState(string RootPath);
+}
