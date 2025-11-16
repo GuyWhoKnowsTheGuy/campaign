@@ -11,8 +11,12 @@
             <MudStack>
                 <MudText>Tucker Carlson</MudText>
                 <MudStack Spacing="3" Row="true">
-                    <MudLink Href="https://x.com/TuckerCarlson" Target="_blank"><MudImage Src="@($"{State?.RootPath}/images/x-logo-black.png")" Height="25" Width="25"/></MudLink> 
-                    <MudLink Href="https://www.instagram.com/tuckercarlson/" Target="_blank"><MudImage Src="@($"/images/instagram-logo.png")" Height="25" Width="25"/></MudLink> 
+                    @{
+                        var sanity = $"{(string.IsNullOrEmpty(State?.RootPath) || State?.RootPath == "/" ? string.Empty : $"/{State?.RootPath}")}/images/x-logo-black.png";
+                        Console.WriteLine($"State.RootPath: {State?.RootPath} {Environment.NewLine} Sanity: {sanity}");
+                    }
+                    <MudLink Href="https://x.com/TuckerCarlson" Target="_blank"><MudImage Src="@(sanity)" Height="25" Width="25"/></MudLink>
+                    <MudLink Href="https://www.instagram.com/tuckercarlson/" Target="_blank"><MudImage Src="@($"/images/instagram-logo.png")" Height="25" Width="25"/></MudLink>
                 </MudStack>
             </MudStack> 
         </MudCardContent>
@@ -50,7 +54,11 @@
     {
         if (this.State is not null)
         {
-            this.State = this.State with { RootPath = NavigationManager.ToBaseRelativePath(NavigationManager.BaseUri) };
+            var uri = new Uri(NavigationManager.BaseUri);
+            
+            //var  foo = uri.PathAndQuery.Remove(uri.PathAndQuery.IndexOf('?'));
+            
+            this.State = this.State with { RootPath = uri.PathAndQuery };
         }
         
         if (firstRender)
