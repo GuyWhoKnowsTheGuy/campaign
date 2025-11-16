@@ -4,12 +4,62 @@
 <PageTitle>Home</PageTitle>
 
 
-<MudText Typo="Typo.h3" GutterBottom="true">Swarm!</MudText>
-<MudCard Outlined="true">
-    <MudCardContent>
-        <MudStack>
-            <MudText>Tucker Carlson</MudText>
-            <MudLink Href="https://x.com/TuckerCarlson" Target="_blank"><MudImage Src="@($"{NavigationManager.BaseUri}images/x-logo-black.png")" Height="25" Width="25"/></MudLink> 
-        </MudStack> 
-    </MudCardContent>
-</MudCard>
+<MudText Typo="Typo.h3" GutterBottom="true">Swarm! - ViewState.RootPath: @(State?.RootPath)</MudText>
+<MudStack Spacing="3">
+    <MudCard Outlined="true">
+        <MudCardContent>
+            <MudStack>
+                <MudText>Tucker Carlson</MudText>
+                <MudStack Spacing="3" Row="true">
+                    <MudLink Href="https://x.com/TuckerCarlson" Target="_blank"><MudImage Src="@($"{State?.RootPath}/images/x-logo-black.png")" Height="25" Width="25"/></MudLink> 
+                    <MudLink Href="https://www.instagram.com/tuckercarlson/" Target="_blank"><MudImage Src="@($"/images/instagram-logo.png")" Height="25" Width="25"/></MudLink> 
+                </MudStack>
+            </MudStack> 
+        </MudCardContent>
+    </MudCard>
+    <MudCard Outlined="true">
+        <MudCardContent>
+            <MudStack>
+                <MudText>Tom Bilyeu</MudText>
+                <MudStack Spacing="3" Row="true">
+                    <MudLink Href="https://x.com/tombilyeu" Target="_blank"><MudImage Src="@($"{NavigationManager.BaseUri}images/x-logo-black.png")" Height="25" Width="25"/></MudLink> 
+                    <MudLink Href="https://www.instagram.com/tombilyeu/" Target="_blank"><MudImage Src="@($"{NavigationManager.BaseUri}images/instagram-logo.png")" Height="25" Width="25"/></MudLink> 
+                </MudStack>
+            </MudStack> 
+        </MudCardContent>
+    </MudCard>
+</MudStack>
+@code {
+    [PersistentState]
+    public ViewState? State { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (this.State is null)
+        {
+            this.State = new("campaign");
+        }
+        else
+        {
+        }
+        
+        base.OnInitialized();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (this.State is not null)
+        {
+            this.State = this.State with { RootPath = NavigationManager.ToBaseRelativePath(NavigationManager.BaseUri) };
+        }
+        
+        if (firstRender)
+        {
+            _ = this.InvokeAsync(() => this.StateHasChanged());
+        }
+
+        base.OnAfterRender(firstRender);
+    }
+
+    public record ViewState(string RootPath);
+}
