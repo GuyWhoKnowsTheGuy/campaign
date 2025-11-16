@@ -1,22 +1,19 @@
 ﻿@page "/"
+@using MudBlazorGitHubPages.Components
 @inject NavigationManager NavigationManager
 
 <PageTitle>Home</PageTitle>
 
 
-<MudText Typo="Typo.h3" GutterBottom="true">Swarm! - ViewState.RootPath: @(State?.RootPath)</MudText>
+<MudText Typo="Typo.h3" GutterBottom="true">Swarm!</MudText>
 <MudStack Spacing="3">
     <MudCard Outlined="true">
         <MudCardContent>
             <MudStack>
                 <MudText>Tucker Carlson</MudText>
                 <MudStack Spacing="3" Row="true">
-                    @{
-                        var sanity = $"{(string.IsNullOrEmpty(State?.RootPath) || State?.RootPath == "/" ? string.Empty : $"/{State?.RootPath}")}/images/x-logo-black.png";
-                        Console.WriteLine($"State.RootPath: {State?.RootPath} {Environment.NewLine} Sanity: {sanity}");
-                    }
-                    <MudLink Href="https://x.com/TuckerCarlson" Target="_blank"><MudImage Src="@(sanity)" Height="25" Width="25"/></MudLink>
-                    <MudLink Href="https://www.instagram.com/tuckercarlson/" Target="_blank"><MudImage Src="@($"/images/instagram-logo.png")" Height="25" Width="25"/></MudLink>
+                    <MudLink Href="https://x.com/TuckerCarlson" Target="_blank"><XLogo RootPath="@State?.RootPath"/></MudLink>
+                    <MudLink Href="https://www.instagram.com/tuckercarlson/" Target="_blank"><InstagramLogo RootPath="@State?.RootPath"/></MudLink>
                 </MudStack>
             </MudStack> 
         </MudCardContent>
@@ -26,8 +23,8 @@
             <MudStack>
                 <MudText>Tom Bilyeu</MudText>
                 <MudStack Spacing="3" Row="true">
-                    <MudLink Href="https://x.com/tombilyeu" Target="_blank"><MudImage Src="@($"{NavigationManager.BaseUri}images/x-logo-black.png")" Height="25" Width="25"/></MudLink> 
-                    <MudLink Href="https://www.instagram.com/tombilyeu/" Target="_blank"><MudImage Src="@($"{NavigationManager.BaseUri}images/instagram-logo.png")" Height="25" Width="25"/></MudLink> 
+                    <MudLink Href="https://x.com/tombilyeu" Target="_blank"><XLogo/></MudLink> 
+                    <MudLink Href="https://www.instagram.com/tombilyeu/" Target="_blank"><InstagramLogo/></MudLink> 
                 </MudStack>
             </MudStack> 
         </MudCardContent>
@@ -43,20 +40,15 @@
         {
             this.State = new("campaign");
         }
-        else
-        {
-        }
         
         base.OnInitialized();
     }
-
+    
     protected override void OnAfterRender(bool firstRender)
     {
         if (this.State is not null)
         {
             var uri = new Uri(NavigationManager.BaseUri);
-            
-            //var  foo = uri.PathAndQuery.Remove(uri.PathAndQuery.IndexOf('?'));
             
             this.State = this.State with { RootPath = uri.PathAndQuery.Replace("/", string.Empty) };
         }
