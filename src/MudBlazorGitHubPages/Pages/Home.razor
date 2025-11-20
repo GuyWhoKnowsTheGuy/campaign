@@ -10,10 +10,27 @@
     <MudCard Outlined="true">
         <MudCardContent>
             <MudStack>
+                <MudText>Stephen A Smith</MudText>
+                <MudStack Spacing="3" Row="true">
+                    <MudLink Href="@("https://www.youtube.com/@stephenasmith")" Target="_blank"><YouTubeLogo RootPath="@State?.RootPath"/></MudLink>
+                    <MudLink Href="https://www.instagram.com/stephenasmith" Target="_blank"><InstagramLogo RootPath="@State?.RootPath"/></MudLink>
+                    <MudLink Href="https://x.com/stephenasmith" Target="_blank"><XLogo RootPath="@State?.RootPath"/></MudLink>
+                    <MudLink Href="https://www.facebook.com/stephena" Target="_blank"><FacebookLogo RootPath="@State?.RootPath"/></MudLink>
+                    <MudLink Href="@("https://tiktok.com/@stephenasmith")" Target="_blank"><TikTokLogo RootPath="@State?.RootPath"/></MudLink>
+                </MudStack>
+            </MudStack> 
+        </MudCardContent>
+    </MudCard>
+    <MudCard Outlined="true">
+        <MudCardContent>
+            <MudStack>
                 <MudText>Tucker Carlson</MudText>
                 <MudStack Spacing="3" Row="true">
                     <MudLink Href="https://x.com/TuckerCarlson" Target="_blank"><XLogo RootPath="@State?.RootPath"/></MudLink>
                     <MudLink Href="https://www.instagram.com/tuckercarlson/" Target="_blank"><InstagramLogo RootPath="@State?.RootPath"/></MudLink>
+                    <MudLink Href="@("https://www.youtube.com/@TuckerCarlson")" Target="_blank"><YouTubeLogo RootPath="@State?.RootPath"/></MudLink>
+                    <MudLink Href="@("https://www.tiktok.com/@tuckercarlson")" Target="_blank"><TikTokLogo RootPath="@State?.RootPath"/></MudLink>
+                    <MudLink Href="https://facebook.com/tuckercarlsonTCN" Target="_blank"><FacebookLogo RootPath="@State?.RootPath"/></MudLink>
                 </MudStack>
             </MudStack> 
         </MudCardContent>
@@ -23,8 +40,10 @@
             <MudStack>
                 <MudText>Tom Bilyeu</MudText>
                 <MudStack Spacing="3" Row="true">
-                    <MudLink Href="https://x.com/tombilyeu" Target="_blank"><XLogo RootPath="@State?.RootPath"/></MudLink> 
+                    <MudLink Href="@("https://www.youtube.com/@TomBilyeu")" Target="_blank"><YouTubeLogo RootPath="@State?.RootPath"/></MudLink>
                     <MudLink Href="https://www.instagram.com/tombilyeu/" Target="_blank"><InstagramLogo RootPath="@State?.RootPath"/></MudLink> 
+                    <MudLink Href="https://www.facebook.com/tombilyeu/" Target="_blank"><FacebookLogo RootPath="@State?.RootPath"/></MudLink>
+                    <MudLink Href="https://x.com/tombilyeu" Target="_blank"><XLogo RootPath="@State?.RootPath"/></MudLink>
                 </MudStack>
             </MudStack> 
         </MudCardContent>
