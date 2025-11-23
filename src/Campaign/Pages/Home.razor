@@ -1,12 +1,19 @@
 ﻿@page "/"
-@using MudBlazorGitHubPages.Components
+@using Campaign.Components
 @inject NavigationManager NavigationManager
-
-<PageTitle>Home</PageTitle>
-
 
 <MudText Typo="Typo.h3" GutterBottom="true">Swarm!</MudText>
 <MudStack Spacing="3">
+    <MudCard Outlined="true">
+        <MudCardContent>
+            <MudStack>
+                <MudText>Swarm These Groups!</MudText>
+                <MudStack Row="true" Spacing="3">
+                    <MudLink Href="https://www.facebook.com/groups/1347271312390088/" Target="_blank">Hochul Sucks</MudLink>
+                </MudStack>
+            </MudStack>
+        </MudCardContent>
+    </MudCard>
     <MudCard Outlined="true">
         <MudCardContent>
             <MudStack>
