@@ -1,0 +1,113 @@
+/* /Layout/MainLayout.razor.rz.scp.css */
+.page[b-z5zatmhz4q] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main[b-z5zatmhz4q] {
+    flex: 1;
+}
+
+.navbar-brand[b-z5zatmhz4q] {
+    font-size: 1.1rem;
+    color: white;
+}
+
+.top-row[b-z5zatmhz4q] {
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    background: var(--mud-palette-appbar-background);
+}
+
+.top-row[b-z5zatmhz4q]  a, .top-row[b-z5zatmhz4q]  .btn-link {
+    white-space: nowrap;
+    margin-left: 1.5rem;
+    text-decoration: none;
+}
+
+.top-row[b-z5zatmhz4q]  a:hover, .top-row[b-z5zatmhz4q]  .btn-link:hover {
+    text-decoration: underline;
+}
+
+.top-row[b-z5zatmhz4q]  a:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 640.98px) {
+    .top-row[b-z5zatmhz4q] {
+        justify-content: space-between;
+    }
+
+    .top-row[b-z5zatmhz4q]  a, .top-row[b-z5zatmhz4q]  .btn-link {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+    .page[b-z5zatmhz4q] {
+        flex-direction: row;
+    }
+
+    .sidebar[b-z5zatmhz4q] {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row[b-z5zatmhz4q] {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .top-row.auth[b-z5zatmhz4q]  a:first-child {
+        flex: 1;
+        text-align: right;
+        width: 0;
+    }
+}
+
+.navbar-toggler[b-z5zatmhz4q] {
+    appearance: none;
+    cursor: pointer;
+    width: 3.5rem;
+    height: 2.5rem;
+    color: white;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") no-repeat center/1.75rem rgba(255, 255, 255, 0.1);
+}
+
+    .navbar-toggler:checked[b-z5zatmhz4q] {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+.nav-scrollable[b-z5zatmhz4q] {
+    display: none;
+}
+
+.navbar-toggler:checked ~ .nav-scrollable[b-z5zatmhz4q] {
+    display: block;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler[b-z5zatmhz4q] {
+        display: none;
+    }
+
+    .nav-scrollable[b-z5zatmhz4q] {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+        /* Allow sidebar to scroll for tall menus */
+        height: calc(100vh - 3.5rem);
+        overflow-y: auto;
+    }
+}
